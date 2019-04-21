@@ -15,7 +15,7 @@ defmodule MyApiWeb.Router do
     pipe_through :api
 
     post "sign_up", UserController, :create
-    post "sign_in", UserController, :sign_in
+    post "sign_in", SessionController, :create
   end
 
   scope "/api/v1", MyApiWeb do
