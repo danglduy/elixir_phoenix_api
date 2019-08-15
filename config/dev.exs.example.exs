@@ -49,8 +49,8 @@ config :phoenix, :plug_init_mode, :runtime
 
 # Configure your database
 config :myApi, MyApi.Repo,
-  username: "postgres",
-  password: "postgres",
-  database: "myapi_dev",
+  username: "MY_USERNAME",
+  password: "MY_PASSWORD",
+  database: "MY_DATABASE",
   hostname: "localhost",
   pool_size: 10
