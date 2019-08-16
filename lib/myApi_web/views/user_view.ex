@@ -3,7 +3,10 @@ defmodule MyApiWeb.UserView do
   alias MyApiWeb.UserView
 
   def render("index.json", %{users: users}) do
-    %{data: render_many(users, UserView, "user.json")}
+    %{
+      data: render_many(users, UserView, "user.json"),
+      total_count: length(users)
+    }
   end
 
   def render("show.json", %{user: user}) do
@@ -11,7 +14,6 @@ defmodule MyApiWeb.UserView do
   end
 
   def render("user.json", %{user: user}) do
-    # %{id: user.id, email: user.email, password_hash: user.password_hash}
     %{id: user.id, email: user.email}
   end
 
