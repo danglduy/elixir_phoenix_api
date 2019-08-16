@@ -8,7 +8,7 @@ defmodule MyApi.Accounts do
 
   alias MyApi.Accounts.User
   alias MyApi.Guardian
-  import Comeonin.Bcrypt, only: [checkpw: 2, dummy_checkpw: 0]
+  import Bcrypt, only: [verify_pass: 2, no_user_verify: 0]
 
   @doc """
   Returns the list of users.
@@ -122,7 +122,7 @@ defmodule MyApi.Accounts do
   defp get_by_email(email) when is_binary(email) do
     case Repo.get_by(User, email: email) do
       nil ->
-        dummy_checkpw()
+        no_user_verify()
         {:error, "Login error."}
 
       user ->
@@ -131,7 +131,7 @@ defmodule MyApi.Accounts do
   end
 
   defp verify_password(password, %User{} = user) when is_binary(password) do
-    if checkpw(password, user.password_hash) do
+    if verify_pass(password, user.password_hash) do
       {:ok, user}
     else
       {:error, :invalid_password}
