@@ -14,13 +14,14 @@ defmodule MyApiWeb.Router do
   scope "/api/v1", MyApiWeb do
     pipe_through :api
 
-    post "sign_up", UserController, :create
-    post "sign_in", SessionController, :create
+    post "/sign_up", UserController, :create
+    post "/sign_in", SessionController, :create
   end
 
   scope "/api/v1", MyApiWeb do
     pipe_through [:api, :jwt_authenticated]
 
+    get "/users", UserController, :index
     get "/my_user", UserController, :show
   end
 end
